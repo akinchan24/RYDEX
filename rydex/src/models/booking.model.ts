@@ -15,6 +15,7 @@ export type PaymentStatus = "pending"
     | "paid"
     | "cash"
     | "failed";
+export type PaymentMethod = "online" | "cash";
 
 
 export interface IBooking {
@@ -42,6 +43,7 @@ export interface IBooking {
 
     bookingStatus: BookingStatus
     paymentStatus: PaymentStatus
+    paymentMethod?: PaymentMethod
     paymentDeadline:Date
     adminCommission: number
     partnerAmount: number
@@ -115,6 +117,10 @@ const bookingSchema = new mongoose.Schema<IBooking>({
         type:String,
         enum:["pending","paid","cash","failed"],
         default:"pending"
+    },
+    paymentMethod:{
+        type:String,
+        enum:["online","cash"]
     },
     paymentDeadline:{
      type:Date

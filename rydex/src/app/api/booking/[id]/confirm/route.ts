@@ -18,6 +18,7 @@ try {
             }
          
             booking.paymentStatus="cash"
+            booking.paymentMethod="cash"
             booking.bookingStatus = "confirmed"
             await booking.save()
     

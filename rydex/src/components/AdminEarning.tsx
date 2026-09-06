@@ -131,9 +131,9 @@ function AdminEarning() {
                     initial={{ opacity: 0, scaleY: 0.92 }}
                     animate={{ opacity: 1, scaleY: 1 }}
                     transition={{ duration: 0.45, ease: "easeOut" }}
-                    className="h-56"
+                    className="h-56 min-h-56"
                 >
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                         <BarChart
                             data={earningData}
                             barCategoryGap={"30%"}

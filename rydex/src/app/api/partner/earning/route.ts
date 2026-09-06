@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import connectDb from "@/lib/db";
 import Booking from "@/models/booking.model";
 import User from "@/models/user.model";
+import Withdrawal from "@/models/withdrawal.model";
 import { object } from "motion/react-client";
 import { NextResponse } from "next/server";
 
@@ -16,8 +17,29 @@ export async function GET() {
         const bookings=await Booking.find({
          driver:driver._id,
           paymentStatus:"paid",
+          bookingStatus:"completed",
           createdAt:{$gte:sevenDaysAgo}
         }).select("partnerAmount createdAt")
+
+        const allBookings = await Booking.find({
+            driver: driver._id,
+            paymentStatus: "paid",
+            bookingStatus: "completed",
+            paymentMethod: { $in: ["online", "cash"] },
+        }).select("partnerAmount paymentMethod")
+
+        const withdrawals = await Withdrawal.find({
+            partner: driver._id,
+            status: { $in: ["pending", "paid"] },
+        }).select("amount")
+
+        const onlineReceived = allBookings
+            .filter((booking) => booking.paymentMethod === "online")
+            .reduce((total, booking) => total + (booking.partnerAmount ?? 0), 0)
+        const cashReceived = allBookings
+            .filter((booking) => booking.paymentMethod === "cash")
+            .reduce((total, booking) => total + (booking.partnerAmount ?? 0), 0)
+        const pendingWithdrawal = withdrawals.reduce((total, withdrawal) => total + withdrawal.amount, 0)
 
        let earningMap:Record<string,number>={}
 
@@ -44,7 +66,13 @@ export async function GET() {
        ))
 
        return NextResponse.json(
-       earnings,
+    {
+     earnings,
+     onlineReceived,
+     cashReceived,
+     withdrawableOnline: Math.max(0, onlineReceived - pendingWithdrawal),
+     pendingWithdrawal,
+    },
        {status:200}
        )
 

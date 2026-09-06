@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
         booking.adminCommission=adminCommission
         booking.partnerAmount=partnerAmount
         booking.paymentStatus="paid"
+        booking.paymentMethod="online"
         booking.bookingStatus = "confirmed"
         await booking.save()
 

@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 function ContentList({ data, type }: any) {
     const router = useRouter()
-    console.log(data)
 const handleStartVideoKyc=async (id:any)=>{
     try {
         const result=await axios.get(`/api/admin/video-kyc/start/${id}`)

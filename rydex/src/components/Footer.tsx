@@ -1,7 +1,15 @@
 'use client'
 import React from 'react'
 import { motion } from "motion/react"
-import { Facebook, Instagram, Linkedin, Twitch, Twitter } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react'
+
+const socialLinks = [
+  { label: 'Facebook', href: 'https://www.facebook.com/akinchan.maji.5', Icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/akinchan_maji_24/', Icon: Instagram },
+  { label: 'Twitter', href: 'https://x.com/akinchan_maji', Icon: Twitter },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/akinchanmaji/', Icon: Linkedin },
+]
+
 function Footer() {
   return (
     <div className='w-full bg-black text-white'>
@@ -18,11 +26,14 @@ function Footer() {
             <p className='mt-4 text-gray-400 text-sm leading-relaxed'>Book any vehicle — from bikes to trucks. Trusted owners. Transparent pricing.</p>
 
             <div className='flex gap-4 mt-6'>
-              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
+              {socialLinks.map(({ label, href, Icon }) => (
                 <motion.a
-                  key={i}
+                  key={label}
                   whileHover={{ y: -3 }}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
                   className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 hover:bg-white hover:text-black transition"
                 >
                   <Icon size={18}/>

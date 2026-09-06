@@ -31,6 +31,8 @@ location?:{
     coordinates:[number,number]
 }
 isOnline:boolean
+pendingAppPayment:number
+totalAppCommission:number
 createdAt:Date;
 updatedAt:Date;
 }
@@ -113,6 +115,16 @@ isOnline:{
     type:Boolean,
     default:false,
     index:true
+},
+pendingAppPayment:{
+    type:Number,
+    default:0,
+    min:0
+},
+totalAppCommission:{
+    type:Number,
+    default:0,
+    min:0
 }
 
 },{timestamps:true})
