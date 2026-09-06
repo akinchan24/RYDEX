@@ -1,246 +1,298 @@
 # 🚗 Rydex — Vehicle Booking Platform
 
-**Rydex** is a full-stack vehicle booking platform designed to provide a seamless experience for users to discover and book vehicles while enabling drivers/partners to manage their services through a dedicated platform.
+Rydex is a **full-stack vehicle booking platform** built with **Next.js and TypeScript**, designed to connect users with vehicle partners through a modern, feature-rich web application.
 
-The project combines modern web technologies with real-world features such as authentication, vehicle booking, partner onboarding, real-time communication, maps, online payments, and administrative management.
+The platform includes user authentication, vehicle booking, partner onboarding, real-time communication, map integration, online payments, and administrative management.
 
 ---
 
 ## ✨ Features
 
-### 👤 User Features
+### 👤 User Authentication
 
-* User registration and authentication
-* Secure login and session management
-* Browse available vehicles
-* Vehicle booking functionality
-* Booking management
-* Location and map-based features
-* Online payment integration
-* User-friendly responsive interface
+* Secure user authentication with **NextAuth**
+* Session management
+* Protected routes and user-specific functionality
+* Role-based access for different platform users
 
-### 🚘 Driver / Partner Features
+### 🚘 Vehicle Booking
 
-* Driver/partner onboarding
+* Browse and explore available vehicles
+* View vehicle details
+* Select booking details
+* Create and manage bookings
+* Booking status management
+
+### 🤝 Driver / Partner Onboarding
+
+* Driver and partner registration
 * Partner profile management
-* Vehicle management
-* Booking management
-* Real-time communication
-* Location-based functionality
-
-### 🛠️ Admin Features
-
-* Admin dashboard
-* User management
-* Driver/partner management
-* Vehicle management
-* Booking management
-* Platform-level monitoring and control
-
-### 💬 Real-Time Communication
-
-* Real-time messaging using **Socket.IO**
-* Live communication between relevant users and partners
-
-### 💳 Payments
-
-* Integrated **Razorpay** payment gateway
-* Payment processing for vehicle bookings
-* Designed with support for secure online transactions
+* Vehicle information management
+* Partner-side booking management
 
 ### 🗺️ Maps & Location
 
-* Map integration for location-based features
-* Location selection and visualization
-* Useful for vehicle and booking-related workflows
+* Integrated map functionality
+* Location-based booking features
+* Map-based location selection
+* Location visualization
+
+### 💳 Online Payments
+
+* **Razorpay** payment gateway integration
+* Online booking payments
+* Payment status handling
+* Test-mode payment support during development
+
+### 💬 Real-Time Communication
+
+* Real-time communication using **Socket.IO**
+* Instant messaging functionality
+* Real-time updates between connected users
+
+### 🛠️ Admin Management
+
+* Administrative dashboard
+* User management
+* Partner/driver management
+* Vehicle management
+* Booking management
+
+### 📱 Responsive Interface
+
+* Responsive design for different screen sizes
+* Modern and user-friendly interface
+* Component-based frontend architecture
 
 ---
 
-## 🧑‍💻 Tech Stack
+# 🧑‍💻 Tech Stack
 
-### Frontend
-
-* React.js
-* JavaScript
-* HTML5
-* CSS3
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB
-
-### Authentication
-
-* NextAuth
-
-### Real-Time Communication
-
-* Socket.IO
-
-### Payments
-
-* Razorpay
-
-### Maps
-
-* Map API integration
-
-### Development Tools
-
-* Git
-* GitHub
-* VS Code
+| Technology             | Purpose                               |
+| ---------------------- | ------------------------------------- |
+| **Next.js**            | Full-stack React framework            |
+| **TypeScript**         | Type-safe application development     |
+| **React.js**           | UI development                        |
+| **MongoDB**            | Database                              |
+| **NextAuth.js**        | Authentication and session management |
+| **Socket.IO**          | Real-time communication               |
+| **Razorpay**           | Payment processing                    |
+| **Maps API**           | Maps and location functionality       |
+| **CSS / Tailwind CSS** | Styling                               |
+| **Git & GitHub**       | Version control                       |
 
 ---
 
-## 🏗️ Project Architecture
+# 🏗️ Architecture
+
+Rydex uses Next.js to handle the application's frontend and server-side functionality while integrating external services for authentication, payments, maps, and real-time communication.
 
 ```text
-Rydex
-│
-├── Frontend
-│   ├── Components
-│   ├── Pages
-│   ├── Styles
-│   └── API Integration
-│
-├── Backend
-│   ├── Routes
-│   ├── Controllers
-│   ├── Models
-│   ├── Middleware
-│   └── Socket.IO
-│
-├── Database
-│   └── MongoDB
-│
-└── External Services
-    ├── Razorpay
-    └── Maps API
+                         ┌──────────────────┐
+                         │      Rydex       │
+                         │   Next.js App    │
+                         └────────┬─────────┘
+                                  │
+              ┌───────────────────┼───────────────────┐
+              │                   │                   │
+              ▼                   ▼                   ▼
+        Authentication       Application          Database
+         NextAuth.js          Logic / API         MongoDB
+                                  │
+                ┌─────────────────┼─────────────────┐
+                │                 │                 │
+                ▼                 ▼                 ▼
+             Razorpay         Socket.IO          Maps API
+             Payments       Real-time Chat       Location
 ```
 
 ---
 
-## 🔄 Core Workflow
+# 🔄 Booking Workflow
 
 ```text
 User
-  │
-  ▼
-Authentication
-  │
-  ▼
+ │
+ ▼
+Sign In / Register
+ │
+ ▼
 Browse Vehicles
-  │
-  ▼
+ │
+ ▼
 Select Vehicle
-  │
-  ▼
-Booking
-  │
-  ▼
-Payment
-  │
-  ▼
+ │
+ ▼
+Choose Booking Details
+ │
+ ▼
+Create Booking
+ │
+ ▼
+Razorpay Payment
+ │
+ ▼
+Payment Verification
+ │
+ ▼
 Booking Confirmation
-  │
-  ▼
+ │
+ ▼
 Real-Time Communication
-  │
-  ▼
-Ride / Vehicle Service
 ```
 
 ---
 
-## 🔐 Authentication & Security
+# 🔐 Authentication
 
-Rydex implements authentication and protected application flows to ensure that different types of users can access functionality according to their roles.
+Rydex uses **NextAuth.js** for authentication and session management.
 
-The platform separates user, partner/driver, and administrative functionality to provide appropriate access to each type of account.
+Authentication is integrated into the application to provide:
 
----
-
-## 💳 Payment Integration
-
-Rydex integrates **Razorpay** for online payments.
-
-The payment workflow is designed around:
-
-1. Creating a booking
-2. Initiating the payment
-3. Processing the transaction through Razorpay
-4. Verifying the payment
-5. Updating the booking/payment status
-
-> **Note:** Razorpay test mode should be used during development. Do not expose API keys or other sensitive credentials in the repository.
+* Secure user sessions
+* Protected application routes
+* Authenticated user actions
+* User-specific data
+* Role-based functionality
 
 ---
 
-## ⚡ Real-Time Features
+# 💳 Razorpay Integration
 
-**Socket.IO** is used to enable real-time communication between connected users.
+Rydex integrates **Razorpay** to support online payments for bookings.
 
-This provides the foundation for features such as:
+The payment flow includes:
 
-* Instant messaging
-* Real-time booking-related updates
-* Live communication between users and partners
+1. Initiating a booking
+2. Creating the payment order
+3. Opening the Razorpay checkout
+4. Processing the payment
+5. Verifying the transaction
+6. Updating the booking/payment status
 
----
-
-## 🗺️ Maps Integration
-
-The application uses map services to support location-based functionality, helping users interact with vehicle and booking information geographically.
-
----
-
-## 📱 Responsive Design
-
-Rydex is designed with a responsive interface to provide a consistent experience across:
-
-* 💻 Desktop
-* 📱 Mobile
-* 📲 Tablet
+> ⚠️ Razorpay test credentials should be used during development. Never commit API secrets or `.env` files to GitHub.
 
 ---
 
-## 🚀 Getting Started
+# 💬 Real-Time Communication
 
-### 1. Clone the Repository
+**Socket.IO** is used to provide real-time communication within the platform.
+
+This enables functionality such as:
+
+* Real-time messaging
+* Instant communication
+* Live updates
+* Booking-related communication
+
+---
+
+# 🗺️ Maps Integration
+
+Rydex integrates a Maps API to support location-based functionality.
+
+Maps are used for features such as:
+
+* Location selection
+* Location visualization
+* Booking-related locations
+* Map-based interactions
+
+---
+
+# 📁 Project Structure
+
+A simplified representation of the project structure:
+
+```text
+rydex/
+│
+├── app/
+│   ├── api/
+│   ├── components/
+│   ├── dashboard/
+│   ├── booking/
+│   ├── login/
+│   └── ...
+│
+├── components/
+│   ├── Navbar/
+│   ├── Footer/
+│   ├── Booking/
+│   └── ...
+│
+├── lib/
+│   ├── database/
+│   ├── auth/
+│   └── ...
+│
+├── models/
+│   ├── User
+│   ├── Vehicle
+│   ├── Booking
+│   └── ...
+│
+├── public/
+│
+├── types/
+│
+├── .env.local
+├── next.config.ts
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+> The exact folder structure may differ depending on the current version of the project.
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+Make sure you have installed:
+
+* Node.js
+* npm or pnpm
+* MongoDB
+* Git
+
+---
+
+## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+git clone https://github.com/YOUR-USERNAME/rydex.git
 ```
 
-### 2. Navigate to the Project
+Navigate into the project:
 
 ```bash
 cd rydex
 ```
 
-### 3. Install Dependencies
+---
 
-If the project uses npm:
+## 2. Install Dependencies
+
+Using npm:
 
 ```bash
 npm install
 ```
 
-If the project uses pnpm:
+Or using pnpm:
 
 ```bash
 pnpm install
 ```
 
-### 4. Configure Environment Variables
+---
 
-Create a `.env` file and add the required environment variables.
+## 3. Configure Environment Variables
+
+Create a `.env.local` file in the root directory.
 
 Example:
 
@@ -248,6 +300,7 @@ Example:
 MONGODB_URI=
 
 NEXTAUTH_SECRET=
+NEXTAUTH_URL=
 
 RAZORPAY_KEY_ID=
 RAZORPAY_KEY_SECRET=
@@ -255,102 +308,107 @@ RAZORPAY_KEY_SECRET=
 MAP_API_KEY=
 ```
 
-> Never commit your `.env` file or expose private API keys in GitHub.
+Add any other environment variables required by your project.
 
-### 5. Start the Development Server
+> 🔒 Never commit `.env.local` or expose private API keys.
+
+---
+
+## 4. Run the Development Server
+
+Using npm:
 
 ```bash
 npm run dev
 ```
 
-or:
+Or pnpm:
 
 ```bash
 pnpm dev
 ```
 
-The application should then be available at your local development URL.
+Open the application in your browser:
+
+```text
+http://localhost:3000
+```
 
 ---
 
-## 📂 Environment Variables
+# 🧪 Development
 
-The exact variables may vary depending on your project configuration.
+Rydex was developed as a practical full-stack application to gain hands-on experience with modern web development.
 
-| Variable              | Purpose                             |
-| --------------------- | ----------------------------------- |
-| `MONGODB_URI`         | MongoDB database connection         |
-| `NEXTAUTH_SECRET`     | Authentication/session security     |
-| `RAZORPAY_KEY_ID`     | Razorpay payment integration        |
-| `RAZORPAY_KEY_SECRET` | Razorpay server-side authentication |
-| `MAP_API_KEY`         | Maps/location integration           |
+The project focuses on implementing real-world functionality including:
 
----
-
-## 🧪 Development
-
-Rydex was built as a practical full-stack project to explore how modern web applications work across frontend, backend, database, authentication, payments, real-time communication, and third-party APIs.
-
-The project focuses on implementing real-world application workflows rather than building a simple CRUD application.
-
----
-
-## 🔮 Future Improvements
-
-Potential improvements include:
-
-* Advanced vehicle search and filtering
-* Improved booking management
-* Driver availability tracking
-* Live vehicle tracking
-* Notifications
-* Reviews and ratings
-* Advanced admin analytics
-* Improved payment and refund workflows
-* Enhanced mobile experience
-* Production-level security and optimization
-
----
-
-## 🎯 Learning Outcomes
-
-Through Rydex, I explored and practiced:
-
-* Full-stack application development
-* REST API development
-* MongoDB database design
-* Authentication and authorization
+* Full-stack development with Next.js
+* TypeScript-based development
+* Database integration
+* Authentication
 * Payment gateway integration
 * Real-time communication
 * Third-party API integration
-* Role-based application architecture
-* Git and GitHub workflows
-* Deployment and production configuration
+* Role-based workflows
+* API development
+* Deployment and environment configuration
 
 ---
 
-## 📌 Project Status
+# 🔮 Future Improvements
 
-**🚧 Active Project / Learning Project**
+Planned or potential improvements include:
 
-Rydex is continuously being improved as I expand my knowledge of full-stack development and modern web application architecture.
-
----
-
-## 👨‍💻 About
-
-Rydex is a practical full-stack project built as part of my journey toward becoming a **Full-Stack Developer**.
-
-The goal of the project is to understand and implement the architecture and workflows involved in building a real-world web platform.
-
----
-
-## 📄 License
-
-This project is intended for learning and educational purposes.
-
-If a specific license is added to the repository, refer to the `LICENSE` file for the applicable terms.
+* Advanced vehicle filtering and search
+* Driver availability tracking
+* Live vehicle tracking
+* Push notifications
+* Ratings and reviews
+* Booking cancellation and refund workflows
+* Advanced admin analytics
+* Improved security and validation
+* Performance optimization
+* Progressive Web App support
 
 ---
 
-⭐ **If you find this project interesting, consider giving the repository a star!**
+# 📌 Project Status
+
+**🚧 Active Development**
+
+Rydex is an ongoing project and is being continuously improved while exploring modern full-stack development practices and production-ready application architecture.
+
+---
+
+# 🎯 What I Learned
+
+Building Rydex provided practical experience with:
+
+* Next.js application architecture
+* TypeScript
+* Authentication and authorization
+* MongoDB
+* API development
+* Payment gateway integration
+* WebSocket-based communication
+* Maps and location APIs
+* Environment variables and secrets
+* Git and GitHub
+* Deployment workflows
+* Building and connecting multiple application features into a single platform
+
+---
+
+# 👨‍💻 About the Project
+
+Rydex is a practical full-stack project created to explore how a real-world vehicle booking platform can be designed and implemented using modern web technologies.
+
+The project brings together **authentication, bookings, payments, maps, real-time communication, database operations, and administrative functionality** into one application.
+
+---
+
+## ⭐ Support
+
+If you find the project interesting, consider giving the repository a ⭐.
+
+**Built with Next.js + TypeScript 🚀**
